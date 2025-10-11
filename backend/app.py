@@ -7,19 +7,24 @@ import requests
 from feature_extractor import get_model, extract_features
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__, template_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'templates')), static_folder=os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static')))
+# Get the project root directory
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+app = Flask(__name__, 
+           template_folder=os.path.join(PROJECT_ROOT, 'templates'), 
+           static_folder=os.path.join(PROJECT_ROOT, 'static'))
 
 # Load data
-with open("../products.json", "r") as f:
+with open(os.path.join(PROJECT_ROOT, "products.json"), "r") as f:
     products = json.load(f)
 
-with open("../product_ids.json", "r") as f:
+with open(os.path.join(PROJECT_ROOT, "product_ids.json"), "r") as f:
     product_ids = json.load(f)
 
-faiss_index = faiss.read_index("../product.index")
+faiss_index = faiss.read_index(os.path.join(PROJECT_ROOT, "product.index"))
 model = get_model()
 
-UPLOAD_FOLDER = '../uploads'
+UPLOAD_FOLDER = os.path.join(PROJECT_ROOT, 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
