@@ -7,6 +7,7 @@ import numpy as np
 import faiss
 import requests
 import logging
+import io
 from feature_extractor import get_model, extract_features
 from werkzeug.utils import secure_filename
 
@@ -82,10 +83,10 @@ def search():
                 if not file.filename.lower().endswith(tuple(app.config['ALLOWED_EXTENSIONS'])):
                     return jsonify({"error": "Invalid file type. Allowed: PNG, JPG, JPEG, GIF, WEBP"}), 400
                 
-                filename = secure_filename(file.filename)
-                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                file.save(filepath)
-                logging.info(f"File uploaded: {filename}")
+                # Read image into memory
+                img_stream = io.BytesIO(file.read())
+                filepath = None # No longer saving to disk
+                logging.info(f"File uploaded and read into memory: {file.filename}")
         
         # Handle URL
         elif 'url' in request.form and request.form['url'] != '':
@@ -116,7 +117,10 @@ def search():
 
         # Extract features and search
         try:
-            features = extract_features(filepath, model)
+            if img_stream is None:
+                return jsonify({"error": "Image stream is empty"}), 400
+
+            features = extract_features(img_stream, model)
             D, I = faiss_index.search(np.array([features]), 5)  # Search for 5 most similar products
 
             results = []
@@ -140,14 +144,6 @@ def search():
         except Exception as e:
             logging.error(f"Error during feature extraction or search: {e}")
             return jsonify({"error": "Error processing image. Please try a different image."}), 500
-        finally:
-            # Clean up uploaded file
-            if filepath and os.path.exists(filepath):
-                try:
-                    os.remove(filepath)
-                    logging.debug(f"Cleaned up temporary file: {filepath}")
-                except Exception as e:
-                    logging.warning(f"Could not remove temporary file {filepath}: {e}")
 
     except Exception as e:
         logging.error(f"Unexpected error in search endpoint: {e}")
