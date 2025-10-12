@@ -1,87 +1,59 @@
-# 🚀 Deployment Guide - Visual Product Matcher
+# 🚀 Render Deployment Guide - Visual Product Matcher
 
-This guide will help you deploy your Visual Product Matcher to various hosting platforms.
+This guide will help you deploy your Visual Product Matcher to Render hosting platform.
 
 ## 📋 Prerequisites
 
 - ✅ Python 3.11+ installed locally
 - ✅ Git repository with your code
 - ✅ All dependencies working locally
+- ✅ Render account (free at [render.com](https://render.com))
 
-## 🎯 Recommended Platforms
+## 🎯 Render Deployment
 
-### 1. Railway (Recommended) ⭐
-**Best for: Easy deployment, Python ML apps, free tier**
-
-```bash
-python deploy_railway.py
-```
-
-**Steps:**
-1. Go to [railway.app](https://railway.app)
-2. Sign in with GitHub
-3. Click "Deploy from GitHub repo"
-4. Select your repository
-5. Railway auto-detects Python and deploys
+### Why Render? ⭐
+**Best for: Reliable hosting, good free tier, Python ML apps**
 
 **Advantages:**
-- Zero configuration needed
-- Automatic Python version detection
-- Built-in HTTPS
+- Reliable and stable hosting
 - Generous free tier
-- Perfect for ML applications
+- Easy GitHub integration
+- Automatic deployments on git push
+- Built-in HTTPS
+- Perfect for Python ML applications
+- No credit card required for free tier
 
-### 2. Render ⭐
-**Best for: Reliable hosting, good free tier**
+### Quick Deployment Steps
 
 ```bash
 python deploy_render.py
 ```
 
-**Steps:**
+**Manual Steps:**
 1. Go to [render.com](https://render.com)
 2. Sign in with GitHub
-3. Create new "Web Service"
-4. Connect your repository
-5. Configure build/start commands
-
-**Advantages:**
-- Reliable and stable
-- Good free tier
-- Easy GitHub integration
-- Automatic deployments
-
-### 3. Heroku
-**Best for: Traditional hosting, extensive documentation**
-
-```bash
-python deploy_heroku.py
-```
-
-**Steps:**
-1. Install Heroku CLI
-2. Run the deployment script
-3. Follow the prompts
-
-**Advantages:**
-- Mature platform
-- Extensive documentation
-- Add-ons available
-- Good for learning
+3. Click "New +" → "Web Service"
+4. Connect your GitHub repository
+5. Configure the service:
+   - **Name**: `visual-product-matcher`
+   - **Environment**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `cd backend && gunicorn app:app --bind 0.0.0.0:$PORT`
+6. Click "Create Web Service"
 
 ## 🔧 Configuration Files
 
-Your project includes all necessary configuration files:
+Your project includes all necessary configuration files for Render:
 
 - ✅ `requirements.txt` - Python dependencies with pinned versions
-- ✅ `Procfile` - Process configuration for hosting platforms
-- ✅ `runtime.txt` - Python version specification
+- ✅ `Procfile` - Process configuration for Render
+- ✅ `runtime.txt` - Python version specification (3.11.9)
 - ✅ `config.py` - Application configuration with environment support
 - ✅ `.gitignore` - Git ignore rules for clean repository
 
 ## 🌍 Environment Variables
 
-Set these in your hosting platform's dashboard:
+Set these in your Render dashboard (Service → Environment):
 
 ```bash
 FLASK_ENV=production
@@ -89,21 +61,14 @@ SECRET_KEY=your-secret-key-here
 LOG_LEVEL=INFO
 ```
 
-## 📊 Platform Comparison
-
-| Platform | Free Tier | Python Support | ML Support | Ease of Use | Recommended |
-|----------|-----------|----------------|------------|-------------|-------------|
-| Railway  | ✅ Generous | ✅ Excellent | ✅ Perfect | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ |
-| Render   | ✅ Good | ✅ Excellent | ✅ Good | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| Heroku   | ❌ Limited | ✅ Good | ✅ Good | ⭐⭐⭐ | ⭐⭐⭐ |
-| Vercel   | ✅ Good | ⚠️ Limited | ⚠️ Limited | ⭐⭐⭐ | ⭐⭐ |
-
 ## 🚀 Quick Start
 
-1. **Choose a platform** (Railway recommended)
-2. **Run the deployment script** for your chosen platform
-3. **Set environment variables** in the platform dashboard
-4. **Deploy and test** your application
+1. **Run the deployment script**: `python deploy_render.py`
+2. **Go to Render**: [render.com](https://render.com)
+3. **Connect GitHub**: Sign in and connect your repository
+4. **Deploy**: Create new Web Service and deploy
+5. **Set environment variables** in Render dashboard
+6. **Test your app**: Visit the provided URL
 
 ## 🔍 Troubleshooting
 
