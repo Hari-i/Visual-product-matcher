@@ -55,9 +55,10 @@ uploads/
 *.tmp
 *.temp
 
-# Logs
+# Log files
 *.log
 logs/
+app.log
 
 # Environment variables
 .env
