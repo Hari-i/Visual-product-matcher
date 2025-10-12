@@ -1,6 +1,5 @@
-"""
-Configuration settings for Visual Product Matcher
-"""
+#config.py
+
 import os
 
 class Config:

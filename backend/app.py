@@ -1,3 +1,5 @@
+#app.py
+
 from flask import Flask, request, jsonify, render_template
 import os
 import json
@@ -8,7 +10,8 @@ import logging
 from feature_extractor import get_model, extract_features
 from werkzeug.utils import secure_filename
 
-# Get the project root directory
+
+
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Import configuration
@@ -35,14 +38,13 @@ logging.basicConfig(
     ]
 )
 
-# Load data
 with open(os.path.join(PROJECT_ROOT, "products.json"), "r") as f:
     products = json.load(f)
 
 with open(os.path.join(PROJECT_ROOT, "product_ids.json"), "r") as f:
     product_ids = json.load(f)
+#okay
 
-# Load FAISS index and model
 try:
     faiss_index = faiss.read_index(os.path.join(PROJECT_ROOT, "product.index"))
     model = get_model()
