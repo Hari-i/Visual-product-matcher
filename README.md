@@ -2,7 +2,7 @@
 
 A Flask-based web application that uses computer vision to find visually similar products based on uploaded images. Built with TensorFlow, FAISS, and Bootstrap for a modern, responsive user experience.
 
-## ✨ Features
+##  Features
 
 - **Dual Input Methods**: Upload images directly or provide image URLs
 - **Visual Similarity Search**: Find similar products using deep learning features
@@ -11,7 +11,7 @@ A Flask-based web application that uses computer vision to find visually similar
 - **Real-time Results**: Instant visual feedback with loading states
 - **Product Database**: 100+ products across 5 categories (jeans, sneakers, sunglasses, t-shirts, watches)
 
-## 🛠️ Technical Approach
+##  Technical Approach
 
 The application uses a **MobileNet-based feature extraction pipeline**:
 
@@ -22,7 +22,7 @@ The application uses a **MobileNet-based feature extraction pipeline**:
 
 **Key Technologies**: TensorFlow, FAISS, Flask, Bootstrap, jQuery
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Local Development
 
@@ -41,7 +41,7 @@ The application uses a **MobileNet-based feature extraction pipeline**:
 3. **Open your browser:**
    Navigate to `http://localhost:5000`
 
-## 🌐 Deployment
+##  Deployment
 
 ### Render (Recommended) ⭐
 
@@ -69,14 +69,14 @@ python deploy_render.py
 - **Heroku**: https://heroku.com (Requires credit card)
 - **PythonAnywhere**: https://pythonanywhere.com (Upload code)
 
-## 📱 Usage
+##  Usage
 
 1. **Upload an Image**: Choose a file or paste an image URL
 2. **View Results**: See your uploaded image and similar products
 3. **Filter Results**: Use the similarity slider to refine results
 4. **Explore Products**: Click on product cards to see details
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 visual-product-matcher/
@@ -103,7 +103,7 @@ visual-product-matcher/
 └── README.md              # This file
 ```
 
-## 🔌 API Reference
+## API Reference
 
 ### Endpoints
 
@@ -132,20 +132,4 @@ visual-product-matcher/
 }
 ```
 
-## 🎯 Performance
 
-- **Feature Extraction**: ~2-3 seconds per image
-- **Search Time**: <100ms for similarity search
-- **Database Size**: 100 products, ~50MB total
-- **Mobile Support**: Fully responsive design
-
-## 📄 License
-
-MIT License
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
