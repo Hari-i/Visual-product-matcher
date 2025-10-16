@@ -41,33 +41,6 @@ The application uses a **MobileNet-based feature extraction pipeline**:
 3. **Open your browser:**
    Navigate to `http://localhost:5000`
 
-##  Deployment
-
-### Render (Recommended) ⭐
-
-1. **Go to Render**: https://render.com
-2. **Sign in with GitHub** and connect your repository
-3. **Create Web Service**:
-   - Name: `visual-product-matcher`
-   - Environment: `Python 3`
-   - Build Command: `pip install -r requirements.txt`
-   - Start Command: `cd backend && gunicorn app:app --bind 0.0.0.0:$PORT`
-4. **Set Environment Variables**:
-   - `FLASK_ENV=production`
-   - `SECRET_KEY=your-secret-key-here`
-5. **Deploy** and visit your app URL!
-
-### Quick Deploy Script
-
-```bash
-python deploy_render.py
-```
-
-### Alternative Platforms
-
-- **Railway**: https://railway.app (Connect GitHub repo)
-- **Heroku**: https://heroku.com (Requires credit card)
-- **PythonAnywhere**: https://pythonanywhere.com (Upload code)
 
 ##  Usage
 
@@ -98,7 +71,6 @@ visual-product-matcher/
 ├── product_ids.json        # FAISS index mapping
 ├── product.index           # Pre-built FAISS index
 ├── requirements.txt        # Python dependencies
-├── Procfile               # Heroku deployment config
 ├── runtime.txt            # Python version specification
 └── README.md              # This file
 ```
